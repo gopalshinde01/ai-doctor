@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Doctor Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="logo">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <span>AI Doctor Pro</span>
+        </div>
+        <div class="nav-links">
+            <a href="#dashboard" class="active">Dashboard</a>
+            <a href="#checker">Symptom Checker</a>
+            <a href="#chat">AI Consultation</a>
+            <a href="#contacts">Contacts</a>
+        </div>
+        <div style="display:flex; gap: 1rem; align-items: center;">
+            <button class="nav-action" id="logout-btn" style="background:rgba(255, 255, 255, 0.05); border:1px solid var(--glass-border); color:var(--text-main);">Logout</button>
+            <button class="nav-action" onclick="window.location.href='tel:108'">Emergency</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero glass-panel">
+            <div class="hero-content">
+                <h1>Next-Generation <span class="text-gradient">Healthcare</span> Intelligence</h1>
+                <p>AI Doctor Pro uses advanced algorithms to predict potential health issues, offer preliminary advice, and guide you towards better health decisions.</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <i class="fa-solid fa-brain"></i>
+                        <div class="stat-info">
+                            <h3>94%</h3>
+                            <p>Prediction Accuracy</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <div class="stat-info">
+                            <h3>&lt; 2s</h3>
+                            <p>Response Time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-placeholder">
+                <div class="pulse-ring">
+                    <i class="fa-solid fa-stethoscope"></i>
+                </div>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <!-- Symptom Checker -->
+            <section id="checker" class="checker-section glass-panel">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-clipboard-list"></i> Symptom Checker</h2>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="symptom-input" placeholder="E.g., headache, fever, cough...">
+                    <button id="add-symptom-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="tags-container" id="symptoms-list">
+                </div>
+                <button id="predict-btn" class="primary-btn">Analyze Symptoms</button>
+
+                <div id="prediction-result" class="result-card hidden">
+                    <div class="result-header">
+                        <h3>Analysis Results</h3>
+                        <div class="confidence-badge">85% Match</div>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-item">
+                            <span class="label">Likely Condition:</span>
+                            <span class="value disease-name" id="res-disease">Common Cold</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Recommendation:</span>
+                            <span class="value" id="res-recommendation">Rest, drink fluids.</span>
+                        </div>
+                        <div class="remedies-section">
+                            <h4>Home Remedies</h4>
+                            <ul id="res-remedies">
+                                <li>Ginger tea</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Interface -->
+            <section id="chat" class="chat-section glass-panel">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-user-doctor"></i> Live AI Consultation</h2>
+                </div>
+                <div class="chat-window">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai">
+                            <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                            <div class="bubble">Hello! I am AI Doctor Pro. Describe how you are feeling or ask me any health-related questions.</div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Type your message here...">
+                        <button id="send-chat-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Healthcare Contacts & Doctors -->
+        <section id="contacts" class="contacts-section glass-panel" style="margin-top: 2rem;">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-address-book"></i> Healthcare & Doctor Contacts</h2>
+            </div>
+            <div class="contacts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; padding: 0 2rem 2rem 2rem;">
+                
+                <!-- Emergency Contact -->
+                <div class="contact-card emergency" onclick="window.location.href='tel:108'" style="background: rgba(255,77,109,0.05); border: 1px solid rgba(255,77,109,0.2); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.2rem; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="contact-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: var(--danger); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-truck-medical"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 0.2rem;">Emergency Services</h3>
+                        <p style="color: var(--danger); font-size: 0.9rem; margin-bottom: 0.5rem;">24/7 Ambulance & Support</p>
+                        <h2 style="color: white; margin-bottom: 0; font-family: var(--font-heading);"><i class="fa-solid fa-phone"></i> 108</h2>
+                    </div>
+                </div>
+
+                <!-- Doctor Card 1 -->
+                <div class="contact-card" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.2rem; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="contact-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: var(--primary); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 0.2rem;">Dr. Sarah Jenkins</h3>
+                        <p style="color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem;">Cardiologist</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.2rem;"><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> s.jenkins@aidoctor.pro</p>
+                    </div>
+                </div>
+
+                <!-- Doctor Card 2 -->
+                <div class="contact-card" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.2rem; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="contact-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: var(--orb-2); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 0.2rem;">Dr. Alan Peterson</h3>
+                        <p style="color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem;">General Physician</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.2rem;"><i class="fa-solid fa-phone"></i> +1 (555) 987-6543</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> a.peterson@aidoctor.pro</p>
+                    </div>
+                </div>
+
+                <!-- Doctor Card 3 -->
+                <div class="contact-card" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 1.2rem; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="contact-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: #e2842d; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; flex-shrink: 0;">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 0.2rem;">Dr. Emily Chen</h3>
+                        <p style="color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem;">Neurologist</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.2rem;"><i class="fa-solid fa-phone"></i> +1 (555) 345-6789</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> e.chen@aidoctor.pro</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

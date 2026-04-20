@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Doctor Pro - Secure Login</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 3.5rem 3rem;
+            text-align: center;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .login-card .logo {
+            justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 1.1rem 1.2rem 1.1rem 3rem;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(78, 93, 235, 0.1);
+        }
+        
+        .form-group input::placeholder {
+            color: rgba(161, 168, 194, 0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #842de2 100%);
+            color: white;
+            border: none;
+            padding: 1.1rem;
+            border-radius: 14px;
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(132, 45, 226, 0.4);
+        }
+
+        .error-msg {
+            color: var(--danger);
+            background: rgba(255, 77, 109, 0.1);
+            border: 1px solid rgba(255, 77, 109, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .hint {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: rgba(161, 168, 194, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Design -->
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="glass-panel login-card">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>AI Doctor Pro</span>
+            </div>
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your intelligent healthcare console</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Student / Medical Email</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" placeholder="student@college.edu" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Security Key</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••••••" required>
+                    </div>
+                </div>
+                
+                <div id="error-msg" class="error-msg">
+                    <i class="fa-solid fa-circle-exclamation"></i> Invalid credentials.
+                </div>
+                
+                <button type="submit" class="login-btn">Secure Login <i class="fa-solid fa-arrow-right-to-bracket" style="margin-left: 5px;"></i></button>
+            </form>
+            
+            <span class="hint">Use any email to login for this demo project.</span>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = document.querySelector('.login-btn');
+            const errorMsg = document.getElementById('error-msg');
+
+            // Quick validation for demo
+            if (email.includes('@') && password.length >= 3) {
+                // Loading simulation
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+                
+                setTimeout(() => {
+                    localStorage.setItem('loggedIn', 'true');
+                    localStorage.setItem('userEmail', email);
+                    window.location.href = 'index.html';
+                }, 800);
+            } else {
+                errorMsg.style.display = 'block';
+                // Add a small shake animation via js
+                const card = document.querySelector('.login-card');
+                card.style.transform = 'translateX(-10px)';
+                setTimeout(() => card.style.transform = 'translateX(10px)', 100);
+                setTimeout(() => card.style.transform = 'translateX(0)', 200);
+            }
+        });
+        
+        // Auto-redirect if already logged in
+        if (localStorage.getItem('loggedIn')) {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
